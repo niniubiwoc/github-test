@@ -79,12 +79,18 @@ if __name__ == '__main__':
             getdataurl = "https://2captcha.com/res.php?key=3067ef0088ec380b2e8338f673669476&action=get&id={0}&json=1".format(
                 randomdata)
             requestdata = ""
+            flag = 0
             while True:
                 result = eval(requests.get(getdataurl).text)
                 print(result)
+                if result['request'] == "ERROR_WRONG_CAPTCHA_ID":
+                    flag = 1
+                    break
                 if result['status'] == 1:
                     requestdata = result['request']
                     break
+            if flag == 1:
+                continue
             browser.execute_script('document.getElementById("g-recaptcha-response").innerHTML="%s";' % requestdata)
             try:
                 browser.find_element(By.ID, "onetrust-accept-btn-handler").click()
