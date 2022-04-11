@@ -71,12 +71,12 @@ if __name__ == '__main__':
             datasitekey = getmidstring(html, "https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=", "&")
             print(datasitekey)
             getrandomdata = requests.get(
-                "https://2captcha.com/in.php?key=3067ef0088ec380b2e8338f673669476&method=userrecaptcha&googlekey={0}&pageurl=https://signup.heroku.com/&json=1".format(
+                "https://2captcha.com/in.php?key=5d9e13e461a60a913a107ad3e82c5719&method=userrecaptcha&googlekey={0}&pageurl=https://signup.heroku.com/&json=1".format(
                     datasitekey))
             print(getrandomdata.text)
             randomdata = getmidstring(getrandomdata.text, "request\":\"", "\"}")
             print(randomdata)
-            getdataurl = "https://2captcha.com/res.php?key=3067ef0088ec380b2e8338f673669476&action=get&id={0}&json=1".format(
+            getdataurl = "https://2captcha.com/res.php?key=5d9e13e461a60a913a107ad3e82c5719&action=get&id={0}&json=1".format(
                 randomdata)
             requestdata = ""
             flag = 0
