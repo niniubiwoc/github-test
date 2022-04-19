@@ -43,12 +43,12 @@ def pregetmidstring(pre, html, start_str, end):
             return html[start:end].strip()
 
 if __name__ == '__main__':
-    for i in range(100):
+    for i in range(16):
         try:
             browser = webdriver.Chrome(executable_path=chromedriver, chrome_options=options)
             username = ''.join(random.sample(string.ascii_letters, 10)).lower()
             browser.implicitly_wait(20)
-            browser.get('http://xiaoduola.top/')
+            browser.get('http://bookmorpho.tk/')
             browser.find_element(By.CSS_SELECTOR, "a#customShortid").click()
             time.sleep(0.5)
             browser.find_element(By.CSS_SELECTOR, "input#shortid").clear()
@@ -63,7 +63,7 @@ if __name__ == '__main__':
                 ''.join(random.sample(string.ascii_letters, 10)).upper())
             browser.find_element(By.NAME, "last_name").send_keys(
                 ''.join(random.sample(string.ascii_letters, 10)).upper())
-            browser.find_element(By.NAME, "email").send_keys(username + "@xiaoduola.top")
+            browser.find_element(By.NAME, "email").send_keys(username + "@bookmorpho.tk")
             Select(browser.find_element(By.NAME, "role")).select_by_value("professional_developer")
             Select(browser.find_element(By.NAME, "self_declared_country")).select_by_value("United States")
             Select(browser.find_element(By.NAME, "main_programming_language")).select_by_value("go")
