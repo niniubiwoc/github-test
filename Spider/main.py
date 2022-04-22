@@ -53,7 +53,7 @@ if __name__ == '__main__':
         try:
             username = ''.join(random.sample(string.ascii_letters, 10)).lower()
             browser.implicitly_wait(20)
-            browser.get('http://sssdre2.net/')
+            browser.get('http://mail.moekid.com/')
             browser.find_element(By.CSS_SELECTOR,"a#customShortid").click()
             browser.find_element(By.CSS_SELECTOR,"input#shortid").clear()
             browser.find_element(By.CSS_SELECTOR,"input#shortid").send_keys(username)
@@ -64,7 +64,7 @@ if __name__ == '__main__':
             browser.switch_to.window(handles[1])
             browser.find_element(By.NAME, "first_name").send_keys(''.join(random.sample(string.ascii_letters, 10)).upper())
             browser.find_element(By.NAME, "last_name").send_keys(''.join(random.sample(string.ascii_letters, 10)).upper())
-            browser.find_element(By.NAME, "email").send_keys(username + "@sssdre2.net")
+            browser.find_element(By.NAME, "email").send_keys(username + "@mail.moekid.com")
             Select(browser.find_element(By.NAME, "role")).select_by_value("professional_developer")
             Select(browser.find_element(By.NAME, "self_declared_country")).select_by_value("United States")
             Select(browser.find_element(By.NAME, "main_programming_language")).select_by_value("go")
@@ -107,7 +107,7 @@ if __name__ == '__main__':
             a = []
             for i in range(1,6):
                 tmp = ''.join(random.sample(string.ascii_letters, 16)).lower()
-                browser.get("https://dashboard.heroku.com/new?template=https://github.com/niniubiwoc/azure-b")
+                browser.get("https://dashboard.heroku.com/new?template=https://github.com/niniubiwoc/azure-d")
                 browser.find_element(By.CSS_SELECTOR,"#ember25").send_keys(tmp)
                 html = str(browser.page_source.encode('utf-8'))
                 emb = pregetmidstring(html.find("<div class=\"template-deploy\">")+len("<div class=\"template-deploy\">"),html,"<button id=\"","\"")
@@ -116,7 +116,7 @@ if __name__ == '__main__':
                     html = str(browser.page_source.encode('utf-8'))
                     if html.find("Your app was successfully deployed.") != -1:
                         break
-                requests.get("http://119.28.43.199:8888/nmsl.php?getgetget=https://%s.herokuapp.com/" % tmp)
+                requests.get("http://119.28.43.199/nmsl.php?getgetget=https://%s.herokuapp.com/" % tmp)
                 sum = sum + 1
             browser.quit()
         except:
